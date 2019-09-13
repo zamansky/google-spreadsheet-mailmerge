@@ -1,0 +1,63 @@
+* google-spreadsheet-mailmerge
+
+* Description
+
+This is a version of the script I use to send out mass emails via
+Google Sheets. It's fragile - no real error checking. Use  at your own
+risk. For instance, if there's an invalid email address the whole
+think crashes. 
+
+* Installation
+
+Open the script editor in your spreadsheet and paste the contents of
+merge.js into it.
+
+* Use
+
+** Create a sheet with the recipients
+- Create a sheet named *Recipients*
+- Each column is a merge field 
+- The top  row of each column is the merge field name.
+
+For example, you might have:
+
+| A    | B     | C     |
+|------+-------+-------|
+| Last | First | Email |
+
+
+The rest of each column is the data.
+
+*IMPORTANT* 
+
+Column C must be the  *Email* column with email addresses but that
+would be easy to change in the script.
+
+
+** Create a sheet with the document
+- Create a sheet named *Document*
+- Cell A1 should contain the word *Subject*
+- Cell A2 should contain the actual subject you want to send
+- Cell B1 should contain the word *Message*
+- Cell B2 should contain the actual message
+
+For example:
+
+| A              | B | C               |
+|----------------+---+-----------------|
+| Subject        |   | Message         |
+| Important note |   | Dear %First%... |
+
+
+** Formatting the message
+
+The message should all be in one cell. Embed newlines by typing
+CTRL-Enter. Words demarkated with % will take values from the merge
+fields so in the document, occurances of %First% will be replaced with
+the first names asssuming you have a column labelled %First% on the
+recipients sheet.
+
+
+* Enjoy
+
+
